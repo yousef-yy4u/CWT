@@ -31,12 +31,16 @@ const Sidebar = ({
     <div className="d-flex gap-3">
       {/* Sidebar Column */}
       <div id="sidebar" className="bg-light text-black p-3" style={{ width: "225px", height: "77vh" }}>
-        <h5 className="mb-3">{role ? `${role} Panel` : "No Role Detected"}</h5>
+        <p className="mb-3">
+          {role ? `${role.charAt(0).toUpperCase() + role.slice(1)} Panel` : "No Role Detected"}
+        </p>
+        <div style={{ height: "15px" }}></div>
         <ul className="nav flex-column">
           {links.map((section) => (
             <li className="nav-item mb-2" key={section}>
-              <button
-                className={`btn btn-sm ${selectedSection === section ? "btn-primary" : "btn-outline-primary"} w-100 text-start`}
+              <button 
+                id="sidebar-btn"
+                className={`btn btn-sm ${selectedSection === section ? "btn-secondary" : "btn-outline-light"} w-100 text-start`}
                 onClick={() => {
                   setSelectedSection(section);
                   setActiveTab(null);
@@ -44,6 +48,7 @@ const Sidebar = ({
               >
                 {section}
               </button>
+              <div style={{ height: "15px" }}></div>
             </li>
           ))}
         </ul>

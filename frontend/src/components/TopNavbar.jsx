@@ -18,7 +18,8 @@ const TopNavbar = ({ section, activeTab, setActiveTab }) => {
 
   return (
     <nav className="navbar bg-body-tertiary shadow-lg rounded-4 px-3 py-2">
-      <div className="container-fluid">
+      <div className="container-fluid d-flex justify-content-between">
+        {/* Left Logo/Brand */}
         <a className="navbar-brand d-flex align-items-center gap-2" href="#">
           <img
             src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo.svg"
@@ -29,19 +30,28 @@ const TopNavbar = ({ section, activeTab, setActiveTab }) => {
           />
           <span className="fw-semibold">Bootstrap</span>
         </a>
-      </div>
-      <div className="d-flex gap-2 p-2 border-bottom">
-        {tabs.map((tab) => (
-          <button
-            key={tab}
-            onClick={() => setActiveTab(tab)}
-            className={`btn btn-sm ${activeTab === tab ? "btn-primary" : "btn-outline-primary"}`}
-          >
-            {tab}
-          </button>
-        ))}
+
+        {/* Centered Tabs */}
+        <div id="topbar-cont"className="d-flex gap-2 me-auto">
+          {tabs.map((tab) => (
+            <div class="d-inline-flex p-2">
+              <button
+                id="topbar-btn"
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`btn btn-sm ${
+                  activeTab === tab ? "btn-secondary" : "btn-outline-light"
+                }`}
+              >
+                {tab}
+              </button>
+              <div style={{ width: "20px" }}></div>
+            </div>
+          ))}
+        </div>
       </div>
     </nav>
+
   );
 };
 
