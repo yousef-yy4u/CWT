@@ -1,0 +1,18 @@
+# Python
+*.pyc
+__pycache__/
+
+# Virtual environment
+venv/
+ENV/
+env/
+
+# Django files
+*.sqlite3
+db.sqlite3
+
+# Environment variables
+.env
+
+# Media/Uploads
+/media/

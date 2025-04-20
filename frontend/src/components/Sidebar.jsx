@@ -1,0 +1,63 @@
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import AdminContent from "./content/AdminContent"; // adjust path if needed
+
+
+const Sidebar = ({
+  role,
+  selectedSection,
+  setSelectedSection,
+  setActiveTab,
+  section,
+  tab
+}) => {
+  if (role === "dev") role = "admin";
+
+  const linksByRole = {
+    admin: [
+      "User Management",
+      "Appointment Management",
+      "Inventory",
+      "Staff & HR",
+      "Reports",
+      "Settings"
+    ],
+    doctor: ["Patients", "Appointments"],
+    nurse: ["Vitals", "Reports"]
+  };
+
+  const links = linksByRole[role] || [];
+
+  return (
+    <div className="d-flex gap-3">
+      {/* Sidebar Column */}
+      <div id="sidebar" className="bg-light text-black p-3" style={{ width: "225px", height: "77vh" }}>
+        <h5 className="mb-3">{role ? `${role} Panel` : "No Role Detected"}</h5>
+        <ul className="nav flex-column">
+          {links.map((section) => (
+            <li className="nav-item mb-2" key={section}>
+              <button
+                className={`btn btn-sm ${selectedSection === section ? "btn-primary" : "btn-outline-primary"} w-100 text-start`}
+                onClick={() => {
+                  setSelectedSection(section);
+                  setActiveTab(null);
+                }}
+              >
+                {section}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Content Column */}
+      <div id="contentbar" className="flex-grow-1 p-4 bg-light overflow-auto">
+        
+        <div style={{ minHeight: "70vh" }}>
+          <AdminContent section={section} tab={tab} />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Sidebar;

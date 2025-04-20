@@ -1,0 +1,15 @@
+# OS/System
+.DS_Store
+Thumbs.db
+
+# Python virtual environments (just in case someone installs venv at root)
+venv/
+ENV/
+env/
+
+# Node.js
+node_modules/
+
+# Environment
+.env
+.env.local

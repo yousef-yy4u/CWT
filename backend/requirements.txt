@@ -1,0 +1,7 @@
+Django>=4.2
+djangorestframework
+psycopg2-binary        # PostgreSQL support
+django-cors-headers    # For CORS between frontend/backend
+Pillow                 # Image/file handling
+python-decouple        # For using .env files
+djangorestframework-simplejwt  # JWT auth
