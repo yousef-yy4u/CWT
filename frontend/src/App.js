@@ -3,6 +3,7 @@ import Login from "./pages/login";
 import Dashboard from "./pages/Dashboard";
 import { AuthProvider, AuthContext } from "./context/AuthContext";
 import { useContext } from "react";
+import "./index.css";
 
 
 const ProtectedRoute = ({ children }) => {

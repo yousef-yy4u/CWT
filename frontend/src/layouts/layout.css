@@ -1,5 +1,71 @@
-body{
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--color-primary) !important;
+    color: var(--color-text) !important;
     margin: 20px;
-    background-color: #6C757D
-}
+  }
+  
+  /* Custom Offcanvas Styling */
+  #sidebar {
+    border-radius: 0.8rem;
+    box-shadow: 0 0 15px rgba(131, 131, 131, 0.5);
+    background-color: var(--color-surface) !important;
+  }
+  .mb-3{
+    text-align: center;
+    font-size: large;
+    text-decoration-style: solid !important; 
+    padding-top: calc(var(--padding-base) + 0.7rem);
 
+  }
+  
+  #contentbar {
+    border-radius: 0.8rem;
+    box-shadow: 0 0 15px rgba(131, 131, 131, 0.5);
+    background-color: var(--color-surface) !important;
+  }
+  #sidebar-btn {
+    min-height: calc(100% + 10px);
+    color: var(--color-text) !important;
+    border-radius: 0.8rem;
+    padding: var(--padding-base);
+    padding-left: 1rem;
+  }
+  
+  #topbar-nav{
+    border-color: var(--color-primary);
+    background-color: var(--color-surface) !important;
+  }
+
+  #topbar-cont {
+    margin-bottom: -15px;
+    padding-left: 60px;
+  }
+  
+  #topbar-btn {
+    min-height: calc(100% + 5px);
+    min-width: calc(100% + 10px);
+    color: var(--color-text) !important;
+    border-radius: 0.8rem 0.8rem 0 0;
+    box-shadow: 0 0 5px rgba(131, 131, 131);
+  }
+  
+  #bell-icon {
+    fill: var(--color-secondary) !important;
+    width: 20px;
+  }
+  
+  /* Secondary Button Styling (override Bootstrap) */
+  #sidebar-btn.btn-secondary {
+    color: var(--color-text-light) !important;
+    background-color: var(--color-primary) !important;
+    border-color: var(--color-primary);
+  }
+  
+  #topbar-btn.btn-secondary{
+    min-height: calc(100% + 6px);
+    color: var(--color-text-light) !important;
+    background-color: var(--color-primary) !important;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0px var(--color-primary);
+  }

@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
-import DashboardLayout from "../layouts/DashboardLayout";
+import DashboardLayout from "../layouts/Dashboardlayout";
 import AdminPanel from "./dashboard/AdminPanel";
 import DoctorPanel from "./dashboard/DoctorPanel";
 import NursePanel from "./dashboard/NursePanel";

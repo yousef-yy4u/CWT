@@ -29,6 +29,7 @@ const AdminContent = ({ section, tab }) => {
           return <p>Unknown tab</p>;
       }
     }
+    
   
     // Add similar blocks for Inventory, Staff & HR, Reports, Settings...
   
