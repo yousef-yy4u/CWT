@@ -1,11 +1,12 @@
+import PatientsTab from "./tabs/PatientsTab";
+
 // src/components/content/AdminContent.jsx
 const AdminContent = ({ section, tab }) => {
-    if (!section || !tab) return <p>Select a section and tab</p>;
   
     if (section === "User Management") {
       switch (tab) {
         case "Patients":
-          return <p>📁 Patients Component</p>;
+          return <PatientsTab></PatientsTab>;
         case "Doctors":
           return <p>📁 Doctors Component</p>;
         case "Staff":
@@ -29,7 +30,7 @@ const AdminContent = ({ section, tab }) => {
           return <p>Unknown tab</p>;
       }
     }
-    
+
   
     // Add similar blocks for Inventory, Staff & HR, Reports, Settings...
   

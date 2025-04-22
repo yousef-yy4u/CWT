@@ -5,7 +5,7 @@ body {
     margin: 20px;
   }
   
-  /* Custom Offcanvas Styling */
+  /* Dashboard Styling */
   #sidebar {
     border-radius: 0.8rem;
     box-shadow: 0 0 15px rgba(131, 131, 131, 0.5);
@@ -55,17 +55,34 @@ body {
     width: 20px;
   }
   
+  /*Patients Tab Styling*/
+  #add-person-icon{
+    width: 25px;
+    height: 25px;
+    color: var(--color-primary);
+  }
+  
+  #add-person-btn{
+    background-color: transparent !important;
+    border: 0;
+
+  }
   /* Secondary Button Styling (override Bootstrap) */
-  #sidebar-btn.btn-secondary {
-    color: var(--color-text-light) !important;
+  .btn-secondary{
     background-color: var(--color-primary) !important;
     border-color: var(--color-primary);
+  }
+  #sidebar-btn.btn-secondary {
+    color: var(--color-text-light) !important;
   }
   
   #topbar-btn.btn-secondary{
     min-height: calc(100% + 6px);
     color: var(--color-text-light) !important;
-    background-color: var(--color-primary) !important;
-    border-color: var(--color-primary);
     box-shadow: 0 0 0px var(--color-primary);
+  }
+
+  .form-control{
+    border: 1px, solid, black;
+    border-radius: 20px;
   }
