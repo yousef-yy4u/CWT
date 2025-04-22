@@ -1,40 +1,33 @@
+import { useEffect, useState } from "react";
+import { fetchPatients } from "../../../api/usersApi";
 import UsersTabLayout from "./UserTabLayout";
 
-const  PatientsTab = ({ section, tab }) => {
-    return <UsersTabLayout></UsersTabLayout>
-    if (section === "User Management") {
-      switch (tab) {
-        case "Patients":
-          return <p>📁 Patients Component</p>;
-        case "Doctors":
-          return <p>📁 Doctors Component</p>;
-        case "Staff":
-          return <p>📁 Staff Component</p>;
-        case "RBAC":
-          return <p>🔐 Role-Based Access Control Component</p>;
-        default:
-          return <p>Unknown tab</p>;
-      }
-    }
-  
-    if (section === "Appointment Management") {
-      switch (tab) {
-        case "Calendar":
-          return <p>📅 Calendar View</p>;
-        case "Walk-ins":
-          return <p>🚶 Walk-in Queue</p>;
-        case "Reminders":
-          return <p>🔔 Reminders Settings</p>;
-        default:
-          return <p>Unknown tab</p>;
-      }
-    }
-    
-  
-    // Add similar blocks for Inventory, Staff & HR, Reports, Settings...
-  
-    return <p>🔍 No content available for {section} - {tab}</p>;
-  };
-  
-  export default PatientsTab;
-  
+const PatientsTab = () => {
+  const [patients, setPatients] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchPatients()
+      .then(data => {
+        setPatients(data);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error("Error fetching patients:", error);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) return <p className="text-muted">Loading patients...</p>;
+  if (patients.length === 0) return <p className="text-muted">No patient data available.</p>;
+
+  return (
+    <>
+      {patients.map(patient => (
+        <UsersTabLayout key={patient.id} user={patient} />
+      ))}
+    </>
+  );
+};
+
+export default PatientsTab;

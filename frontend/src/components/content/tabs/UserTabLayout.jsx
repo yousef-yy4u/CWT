@@ -1,5 +1,5 @@
 
-const  UsersTabLayout = ({ section, tab, user}) => {
+const  UsersTabLayout = ({user}) => {
     return <div class="container">
                 <div class="row">
                     <nav class="navbar">
@@ -21,75 +21,47 @@ const  UsersTabLayout = ({ section, tab, user}) => {
                     <div style={{ height: "30px" }}></div>
                     <ul class="nav flex-column">
                         <li class="nav-item mb-1">
-                            <div class="card">
-                                <div class="card-header gx-0">
-                                    <p class="m-0">{user.name}</p>
-                                </div>
-                                <div class="card-body text-start">
-                                    <div id="card-cont"class="container">
-                                        <div class="row g-2 gy-1">
-                                            <div class="col-2">
-                                                <p class="mb-1">{user.id}</p>
+                            {user ? (
+                                <div class="card">
+                                    <div class="card-header gx-0">
+                                        <p class="m-0">{user.name}</p>
+                                    </div>
+                                    <div class="card-body text-start">
+                                        <div id="card-cont"class="container">
+                                            <div class="row g-2 gy-1">
+                                                <div class="col-2">
+                                                    <p class="mb-1">{user.id}</p>
+                                                </div>
+                                                <div class="col-2">
+                                                    <p class="mb-1">{user.gender}</p>
+                                                </div>
+                                                <div class="col-2">
+                                                    <p class="mb-1">{user.phone}</p>
+                                                </div>
                                             </div>
-                                            <div class="col-2">
-                                                <p class="mb-1">{user.gender}</p>
-                                            </div>
-                                            <div class="col-2">
-                                                <p class="mb-1">{user.phone}</p>
-                                            </div>
-                                        </div>
-                                        <div class="row g-2 gy-1">
-                                            <div class="col-2">
-                                                <p class="mb-1">{user.DOB}</p>
-                                            </div>
-                                            <div class="col-2"></div>
-                                            <div class="col-2">
-                                                <p class="mb-1">{user.email}</p>
-                                            </div>
-                                            <div class="col-2">
-                                                <p class="mb-1">{user.address}</p>
+                                            <div class="row g-2 gy-1">
+                                                <div class="col-2">
+                                                    <p class="mb-1">{user.DOB}</p>
+                                                </div>
+                                                <div class="col-2"></div>
+                                                <div class="col-2">
+                                                    <p class="mb-1">{user.email}</p>
+                                                </div>
+                                                <div class="col-2">
+                                                    <p class="mb-1">{user.address}</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+
+                            ) : (
+                                <p>No user data available.</p>
+                                )}
                         </li>
                     </ul>
                 </div>
             </div>
-            
-    if (section === "User Management") {
-      switch (tab) {
-        case "Patients":
-          return <p>📁 Patients Component</p>;
-        case "Doctors":
-          return <p>📁 Doctors Component</p>;
-        case "Staff":
-          return <p>📁 Staff Component</p>;
-        case "RBAC":
-          return <p>🔐 Role-Based Access Control Component</p>;
-        default:
-          return <p>Unknown tab</p>;
-      }
-    }
-  
-    if (section === "Appointment Management") {
-      switch (tab) {
-        case "Calendar":
-          return <p>📅 Calendar View</p>;
-        case "Walk-ins":
-          return <p>🚶 Walk-in Queue</p>;
-        case "Reminders":
-          return <p>🔔 Reminders Settings</p>;
-        default:
-          return <p>Unknown tab</p>;
-      }
-    }
-    
-  
-    // Add similar blocks for Inventory, Staff & HR, Reports, Settings...
-  
-    return <p>🔍 No content available for {section} - {tab}</p>;
   };
   
   export default UsersTabLayout;

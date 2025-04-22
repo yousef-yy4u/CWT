@@ -1,3 +1,4 @@
+import DoctorsTab from "./tabs/DoctorsTab";
 import PatientsTab from "./tabs/PatientsTab";
 
 // src/components/content/AdminContent.jsx
@@ -8,7 +9,7 @@ const AdminContent = ({ section, tab }) => {
         case "Patients":
           return <PatientsTab></PatientsTab>;
         case "Doctors":
-          return <p>📁 Doctors Component</p>;
+          return <DoctorsTab></DoctorsTab>
         case "Staff":
           return <p>📁 Staff Component</p>;
         case "RBAC":
