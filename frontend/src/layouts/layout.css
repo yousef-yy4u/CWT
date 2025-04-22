@@ -30,6 +30,11 @@ body {
     border-radius: 0.8rem;
     padding: var(--padding-base);
     padding-left: 1rem;
+    transition: all 0.01s ease-in-out;
+  }
+
+  #sidebar-btn:hover{
+    border: 0;
   }
   
   #topbar-nav{
@@ -48,6 +53,11 @@ body {
     color: var(--color-text) !important;
     border-radius: 0.8rem 0.8rem 0 0;
     box-shadow: 0 0 5px rgba(131, 131, 131);
+    transition: all 0.01s ease-in-out;
+
+  }
+  #topbar-btn:hover{
+    border: 0;
   }
   
   #bell-icon {
@@ -55,7 +65,7 @@ body {
     width: 20px;
   }
   
-  /*Patients Tab Styling*/
+  /*Users Tab Styling*/
   #add-person-icon{
     width: 25px;
     height: 25px;
@@ -66,6 +76,9 @@ body {
     background-color: transparent !important;
     border: 0;
 
+  }
+
+  #card-cont{
   }
   /* Secondary Button Styling (override Bootstrap) */
   .btn-secondary{
