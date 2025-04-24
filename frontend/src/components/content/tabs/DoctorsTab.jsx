@@ -3,28 +3,28 @@ import { fetchDoctors } from "../../../api/usersApi";
 import UsersTabLayout from "./UserTabLayout";
 
 const DoctorsTab = () => {
-  const [doctors, setDoctors] = useState([]);
+  const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetchDoctors()
       .then(data => {
-        setDoctors(data);
+        setUsers(data.filter(user => user.role.name === "doctor"));
         setLoading(false);
       })
       .catch(error => {
-        console.error("Error fetching doctors:", error);
+        console.error("Error fetching users:", error);
         setLoading(false);
       });
   }, []);
 
-  if (loading) return <p className="text-muted">Loading doctors...</p>;
-  if (doctors.length === 0) return <p className="text-muted">No doctor data available.</p>;
+  if (loading) return <p className="text-muted">Loading users...</p>;
+  if (users.length === 0) return <p className="text-muted">No user data available.</p>;
 
   return (
     <>
-      {doctors.map(doctor => (
-        <UsersTabLayout key={doctor.id} user={doctor} />
+      {users.map(user => (
+        <UsersTabLayout key={user.id} user={user} />
       ))}
     </>
   );

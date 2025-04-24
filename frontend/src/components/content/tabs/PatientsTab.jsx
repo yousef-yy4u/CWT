@@ -1,30 +1,30 @@
 import { useEffect, useState } from "react";
-import { fetchPatients } from "../../../api/usersApi";
+import { fetchUsers } from "../../../api/usersApi";
 import UsersTabLayout from "./UserTabLayout";
 
 const PatientsTab = () => {
-  const [patients, setPatients] = useState([]);
+  const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchPatients()
+    fetchUsers()
       .then(data => {
-        setPatients(data);
+        setUsers(data.filter(user => user.role.name === "patient"));
         setLoading(false);
       })
       .catch(error => {
-        console.error("Error fetching patients:", error);
+        console.error("Error fetching users:", error);
         setLoading(false);
       });
   }, []);
 
-  if (loading) return <p className="text-muted">Loading patients...</p>;
-  if (patients.length === 0) return <p className="text-muted">No patient data available.</p>;
+  if (loading) return <p className="text-muted">Loading users...</p>;
+  if (users.length === 0) return <p className="text-muted">No user data available.</p>;
 
   return (
     <>
-      {patients.map(patient => (
-        <UsersTabLayout key={patient.id} user={patient} />
+      {users.map(user => (
+        <UsersTabLayout key={user.id} user={user} />
       ))}
     </>
   );

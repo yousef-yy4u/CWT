@@ -1,41 +1,66 @@
 from rest_framework import serializers
-from .models import Doctor, Patient
-from django.contrib.auth import get_user_model
+from .models import *
 
-User = get_user_model()
-
-class DoctorSerializer(serializers.ModelSerializer):
+class RoleSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Doctor
-        fields = [
-            'id',
-            'user',
-            'name',
-            'email',
-            'specialization',
-            'departmentId',
-            'gender',
-            'dob',
-            'phone',
-            'address'
-        ]
+        model = Role
+        fields = '__all__'
 
-class PatientSerializer(serializers.ModelSerializer):
+class DepartmentSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Patient
-        fields = [
-            'id',
-            'user',
-            'name',
-            'email',
-            'gender',
-            'dob',
-            'phone',
-            'address'
-        ]
+        model = Department
+        fields = '__all__'
 
-class UserSerializer(serializers.ModelSerializer):
+class AppUserSerializer(serializers.ModelSerializer):
+    role = serializers.CharField(source="role.name", read_only=True)
+    department = serializers.CharField(source="department.name", read_only=True)
+
+
     class Meta:
-        model = User
-        fields = ['id', 'username', 'email', 'first_name', 'last_name', 'role']
+        model = AppUser
+        fields = '__all__'
 
+class AppointmentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Appointment
+        fields = '__all__'
+
+class MedicalRecordSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MedicalRecord
+        fields = '__all__'
+
+class SupplierSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Supplier
+        fields = '__all__'
+
+class InventoryItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = InventoryItem
+        fields = '__all__'
+
+class ChargeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Charge
+        fields = '__all__'
+
+class DocumentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Document
+        fields = '__all__'
+
+class ShiftSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Shift
+        fields = '__all__'
+
+class AttendanceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Attendance
+        fields = '__all__'
+
+class LeaveRequestSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = LeaveRequest
+        fields = '__all__'

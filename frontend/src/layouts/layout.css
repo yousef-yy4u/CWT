@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: var(--color-primary) !important;
+    background-color: var(--color-bg) !important;
     color: var(--color-text) !important;
     margin: 20px;
   }
@@ -48,11 +48,11 @@ body {
   }
   
   #topbar-btn {
-    min-height: calc(100% + 5px);
+    min-height: calc(100%);
     min-width: calc(100% + 10px);
     color: var(--color-text) !important;
     border-radius: 0.8rem 0.8rem 0 0;
-    box-shadow: 0 0 5px rgba(131, 131, 131);
+    padding-bottom: 15px;
     transition: all 0.01s ease-in-out;
 
   }
@@ -90,9 +90,10 @@ body {
   }
   
   #topbar-btn.btn-secondary{
-    min-height: calc(100% + 6px);
+    min-height: calc(100% + 1px);
     color: var(--color-text-light) !important;
     box-shadow: 0 0 0px var(--color-primary);
+    padding-bottom: 0;
   }
 
   .form-control{

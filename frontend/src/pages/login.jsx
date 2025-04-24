@@ -3,7 +3,7 @@ import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -11,7 +11,7 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await login(username, password);
+      await login(email, password);
       navigate("/dashboard");
     } catch (err) {
       alert("Login failed.");
@@ -24,8 +24,8 @@ function Login() {
         <h2 className="text-xl mb-4">Clinic Login</h2>
         <input
           className="w-full border mb-3 p-2"
-          placeholder="Username"
-          onChange={(e) => setUsername(e.target.value)}
+          placeholder="Email"
+          onChange={(e) => setEmail(e.target.value)}
         />
         <input
           className="w-full border mb-4 p-2"

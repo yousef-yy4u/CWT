@@ -6,6 +6,7 @@
 
   /* Background & Surfaces */
   --color-surface: #FFFFFF;
+  --color-bg:rgb(224, 224, 224);
 
   /* Text */
   --color-text: #212529;

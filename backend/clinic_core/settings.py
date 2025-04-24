@@ -1,17 +1,21 @@
 import os
 from pathlib import Path
-from decouple import config
+from datetime import timedelta
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+# Build paths inside the project
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = 'your-secret-key'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', cast=bool, default=True)
+DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*']  # adjust for production
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+]
 
 # Application definition
 INSTALLED_APPS = [
@@ -21,17 +25,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    
     # Third-party
     'rest_framework',
+    'rest_framework_simplejwt.token_blacklist',
+    'djoser',
     'corsheaders',
 
-    # Custom apps
-    'accounts',
+    # Your app
+    'accounts',  # make sure this matches your app folder name
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',  # Must be near top
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -39,6 +44,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'clinic_core.urls'
@@ -61,17 +68,21 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'clinic_core.wsgi.application'
 
-# Database
+# PostgreSQL (example for Railway)
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('DB_NAME'),
-        'USER': config('DB_USER'),
-        'PASSWORD': config('DB_PASSWORD'),
-        'HOST': config('DB_HOST'),
-        'PORT': config('DB_PORT'),
+        'NAME': 'railway',  # from: -d railway
+        'USER': 'postgres',  # from: -U postgres
+        'PASSWORD': 'EzMgbGVcDvJNBmpmxBRwFJBIXLDMLUDy',  # from: PGPASSWORD=
+        'HOST': 'shinkansen.proxy.rlwy.net',  # from: -h
+        'PORT': '46865',  # from: -p
     }
 }
+
+
+# Custom user model
+AUTH_USER_MODEL = 'accounts.AppUser'
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
@@ -95,22 +106,36 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-# Static files
-STATIC_URL = '/static/'
+# Static files (CSS, JS, Images)
+STATIC_URL = 'static/'
 
-# Custom user model
-AUTH_USER_MODEL = 'accounts.User'
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# REST framework settings
+# Django REST Framework + JWT
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
 }
 
-# Allow all CORS origins (for dev; restrict in prod)
-CORS_ALLOW_ALL_ORIGINS = True
+# SimpleJWT config
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'ROTATE_REFRESH_TOKENS': True,
+    'BLACKLIST_AFTER_ROTATION': True,
+    'AUTH_HEADER_TYPES': ('Bearer',),
+}
 
-# Default primary key field type
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
+DJOSER = {
+    'LOGIN_FIELD': 'email',  # or 'username' depending on your model
+    'USER_ID_FIELD': 'id',
+    'SERIALIZERS': {
+        'user_create': 'accounts.serializers.AppUserSerializer',
+        'user': 'accounts.serializers.AppUserSerializer',
+        'current_user': 'accounts.serializers.AppUserSerializer',
+    },
+}
