@@ -27,9 +27,9 @@ class AppUser(AbstractBaseUser, PermissionsMixin):
     gender = models.CharField(max_length=10)
     department = models.ForeignKey('Department', on_delete=models.SET_NULL, null=True)
     address = models.TextField(null=True)
-    specialization = models.CharField(max_length=255, null=True)  # for doctors
+    specialization = models.ForeignKey('Specialization', on_delete=models.SET_NULL, null=True)
     joined_at = models.DateTimeField(default=timezone.now)
-    ss_password = models.CharField(max_length=255, null=True)  # stored securely if needed
+    ss_password = models.CharField(max_length=255, null=True)
     role = models.ForeignKey('Role', on_delete=models.SET_NULL, null=True)
 
     is_staff = models.BooleanField(default=True)
@@ -48,6 +48,13 @@ class Role(models.Model):
 class Department(models.Model):
     name = models.TextField()
     description = models.TextField()
+
+class Specialization(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+
+    def __str__(self):
+        return self.name
+
 
 class Appointment(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -69,7 +76,6 @@ class MedicalRecord(models.Model):
     visit_date = models.DateField()
 
 class Supplier(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.TextField()
     contact_info = models.TextField()
     description = models.TextField()

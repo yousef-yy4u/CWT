@@ -1,5 +1,6 @@
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import AdminContent from "./content/AdminContent"; // adjust path if needed
+import LogoutButton from '../pages/logout';
 
 
 const Sidebar = ({
@@ -53,6 +54,7 @@ const Sidebar = ({
             </li>
           ))}
         </ul>
+        <LogoutButton/>
       </div>
 
       {/* Content Column */}

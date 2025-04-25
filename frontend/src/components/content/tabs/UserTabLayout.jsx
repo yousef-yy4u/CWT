@@ -41,7 +41,7 @@ const  UsersTabLayout = ({user}) => {
                                             </div>
                                             <div class="row g-2 gy-1">
                                                 <div class="col-2">
-                                                    <p class="mb-1">{user.DOB}</p>
+                                                    <p class="mb-1">{user.dob}</p>
                                                 </div>
                                                 <div class="col-2"></div>
                                                 <div class="col-2">

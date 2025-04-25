@@ -9,7 +9,7 @@ const DoctorsTab = () => {
   useEffect(() => {
     fetchDoctors()
       .then(data => {
-        setUsers(data.filter(user => user.role.name === "doctor"));
+        setUsers(data.filter(user => user.role === "doctor"));
         setLoading(false);
       })
       .catch(error => {
@@ -18,8 +18,14 @@ const DoctorsTab = () => {
       });
   }, []);
 
-  if (loading) return <p className="text-muted">Loading users...</p>;
-  if (users.length === 0) return <p className="text-muted">No user data available.</p>;
+  if (loading) return (
+    <div className="d-flex justify-content-center align-items-center w-100" style={{ minHeight: "70vh" }}>
+      <div className="spinner-border text-primary" role="status" style={{ width: "3rem", height: "3rem" }}>
+        <span className="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  );
+  if (users.length === 0) return <UsersTabLayout><p className="text-muted">No user data available.</p>;</UsersTabLayout>
 
   return (
     <>
